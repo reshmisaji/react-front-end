@@ -8,7 +8,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch("/flowers")
+    fetch("/")
       .then(res => res.json())
       .then(res => this.setState({ flowers: res }));
   }
