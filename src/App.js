@@ -1,22 +1,32 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
 
 class App extends Component {
-
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state={flowers:[]}
+    this.state = { flowers: [] };
   }
 
-  componentDidMount(){
-    fetch('/flowers').then(res=>res.json()).then(res=>this.setState({flowers:res}))
+  componentDidMount() {
+    fetch("/flowers")
+      .then(res => res.json())
+      .then(res => this.setState({ flowers: res }));
   }
 
   render() {
-    return (
-     <div>{this.state}</div>
-    );
+    const flowers = this.state.flowers.map(flower => (
+      <Flower flower={flower} />
+    ));
+    return <div>{flowers}</div>;
   }
 }
+
+const Flower = function(props) {
+  return (
+    <div>
+      { props.flower.id} : {props.flower.flower_name} :{props.flower.color}
+    </div>
+  );
+};
 
 export default App;
